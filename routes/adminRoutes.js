@@ -12,7 +12,7 @@ const ADMIN_PASS = "admin123"; // Stored as plain text
 
 // 🔹 Session Middleware
 router.use(session({
-    secret: "adminSecretKey",
+    secret: "process.env.ADMIN_SECRET_KEY",
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }

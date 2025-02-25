@@ -60,7 +60,7 @@ const requireAdmin = (req, res, next) => {
 };
 
 // 🔹 Fetch All Laptops
-router.get("/laptops", async (req, res) => {
+router.get("/laptops", requireAdmin, async (req, res) => {
     try {
         const laptops = await Laptop.find();
         res.json(laptops);

@@ -36,6 +36,10 @@ mongoose.connect(process.env.MONGO_URI, {})
 // Serve static files
 app.use(express.static("public"));
 
+app.get("/public", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public"));
+})
+
 // Use Routes
 app.use("/api", orderRoutes);
 app.use("/api/admin", adminRoutes);

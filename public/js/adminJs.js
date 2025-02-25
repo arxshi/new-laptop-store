@@ -1,13 +1,16 @@
 async function checkAuth() {
-    let response = await fetch("/api/admin/check-auth");
+    let response = await fetch("/api/admin/check-auth", {
+        method: "GET",
+        credentials: "include"
+    });
     if (response.status !== 200) {
         document.getElementById("login-container").style.display = "block";
         document.getElementById("admin-container").style.display = "none";
     } else {
         document.getElementById("login-container").style.display = "none";
         document.getElementById("admin-container").style.display = "block";
-        loadLaptops();
-        fetchBestSelling();
+        await loadLaptops();
+        await fetchBestSelling();
     }
 }
 
@@ -18,11 +21,12 @@ async function login() {
     let response = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
+        credentials: "include"
     });
 
     if (response.status === 200) {
-        checkAuth();
+        await checkAuth();
     } else {
         alert("Invalid login credentials");
     }
@@ -30,11 +34,14 @@ async function login() {
 
 async function logout() {
     await fetch("/api/admin/logout");
-    checkAuth();
+    await checkAuth();
 }
 
 async function loadLaptops() {
-    let response = await fetch("/api/admin/laptops");
+    let response = await fetch("/api/admin/laptops", {
+        method: "GET",
+        credentials: "include"
+    });
     let laptops = await response.json();
     let table = document.getElementById("laptops");
     table.innerHTML = "<tr><th>Brand</th><th>Model</th><th>Price</th><th>Processor</th><th>RAM</th><th>Storage</th><th>Graphics</th><th>Availability</th><th>Actions</th></tr>";
@@ -71,14 +78,15 @@ async function addLaptop() {
     await fetch("/api/admin/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(laptop)
+        body: JSON.stringify(laptop),
+        credentials: "include"
     });
-    loadLaptops();
+    await loadLaptops();
 }
 
 async function deleteLaptop(id) {
     await fetch(`/api/admin/delete/${id}`, { method: "POST" });
-    loadLaptops();
+    await loadLaptops();
 }
 
 async function updateLaptop(id) {
@@ -96,15 +104,19 @@ async function updateLaptop(id) {
         await fetch(`/api/admin/update/${id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedLaptop)
+            body: JSON.stringify(updatedLaptop),
+            credentials: "include"
         });
-        loadLaptops();
+        await loadLaptops();
     }
 }
 
 async function fetchBestSelling() {
     try {
-        const response = await fetch("/api/admin/best-selling");
+        const response = await fetch("/api/admin/best-selling", {
+            method: "GET",
+            credentials: "include"
+        });
         const data = await response.json();
 
         const labels = data.map(item => item.laptop);

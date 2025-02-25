@@ -30,8 +30,7 @@ app.use(cookieParser());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {})
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.error(" MongoDB Connection Error:", err));
+    .then(() => console.log("MongoDB Connected"));
 
 // Serve static files
 app.use(express.static("public"));

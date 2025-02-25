@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Laptops</title>
+    <link rel="stylesheet" href="style/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body>
+
+    <!-- 🔹 Login Form -->
+    <div id="login-container">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- 🔹 Admin Panel -->
+    <div id="admin-container">
+        <h2>Admin Panel - Laptops</h2>
+        <button onclick="logout()">Logout</button>
+        <table border="1" id="laptops"></table>
+
+        <h3>Add New Laptop</h3>
+        <input type="text" id="brand" placeholder="Brand">
+        <input type="text" id="model" placeholder="Model">
+        <input type="number" id="price" placeholder="Price">
+        <input type="text" id="processor" placeholder="Processor">
+        <input type="text" id="ram" placeholder="RAM">
+        <input type="text" id="storage" placeholder="Storage">
+        <input type="text" id="graphics" placeholder="Graphics">
+        <label>
+            <input type="checkbox" id="availability"> Available
+        </label>
+        <button onclick="addLaptop()">Add</button>
+
+        <h2>📊 Best-Selling Laptops</h2>
+        <canvas id="bestSellingChart"></canvas>
+    </div>
+    <script src="js/adminJs.js" defer></script>
+</body>
+</html>

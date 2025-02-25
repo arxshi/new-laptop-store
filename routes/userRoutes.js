@@ -23,12 +23,12 @@ const passwordSchema = Joi.object({
 
 router.post("/register", async (req, res) => {
   try {
-    const { error } = passwordSchema.validate(req.body.password);
+    const { username, password } = req.body;
+
+    const { error } = passwordSchema.validate(password);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
-
-    const { username, password } = req.body;
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {

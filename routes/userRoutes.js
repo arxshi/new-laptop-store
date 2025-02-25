@@ -23,7 +23,7 @@ const passwordSchema = Joi.object({
 
 router.post("/register", async (req, res) => {
   try {
-    const { error } = passwordSchema.validate(req.body);
+    const { error } = passwordSchema.validate(req.body.password);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }

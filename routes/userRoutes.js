@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const { error } = passwordSchema.validate(password);
+    const { error } = passwordSchema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }

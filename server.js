@@ -23,7 +23,7 @@ const {response} = require("express");
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: "https://new-laptop-store-5ti4ve14m-tamerlans-projects-4d7c08e1.vercel.app/",
+    origin: "http://localhost:3030",
     credentials: true
 }));
 app.use(cookieParser());

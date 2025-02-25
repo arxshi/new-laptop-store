@@ -10,7 +10,7 @@ async function register() {
         return;
     }
 
-    const res = await fetch("http://localhost:3030/api/users/register", {
+    const res = await fetch("https://new-laptop-store-5ti4ve14m-tamerlans-projects-4d7c08e1.vercel.app/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -35,7 +35,7 @@ async function login() {
         return;
     }
 
-    const res = await fetch("http://localhost:3030/api/users/login", {
+    const res = await fetch("https://new-laptop-store-5ti4ve14m-tamerlans-projects-4d7c08e1.vercel.app/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -59,7 +59,7 @@ async function login() {
 
 async function loadLaptops() {
     const searchQuery = document.getElementById("searchModel").value.trim();
-    let url = "http://localhost:3030/api/laptops";
+    let url = "https://new-laptop-store-5ti4ve14m-tamerlans-projects-4d7c08e1.vercel.app/api/laptops";
 
     if (searchQuery) {
         url += `?search=${encodeURIComponent(searchQuery)}`;
